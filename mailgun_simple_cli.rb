@@ -46,7 +46,9 @@ def deliver_payload(payload)
       :to => payload[:to],
       :subject => payload[:subject],
       :html => payload[:body]
-    )
+    ).then do |response|
+      puts response
+    end
   rescue => e
     puts "Error posting payload to Mailgun API\n"
     puts e.message
