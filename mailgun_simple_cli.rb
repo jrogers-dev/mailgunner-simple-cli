@@ -30,7 +30,8 @@ def valid_payload?(payload)
     && payload.key?(:subject) && payload.key?(:body)
     return true
   else
-    puts "Invalid payload: JSON Payload must include key/value pairs for \"to\", \"subject\", and \"body\""
+    puts "Invalid payload: JSON Payload must include key/value pairs for 'api_key', 'domain', 'from', 'to'"\
+    ", 'subject' and 'body'"
     return false
   end
 end
@@ -60,7 +61,8 @@ end
 #Parse command line arguments using OptionParser and use the -p argument
 #block to call all other functions
 OptionParser.new do |parser|
-  parser.on("-p", "--payload PAYLOAD", "A JSON payload encapsulated in single quotes containing 'to', 'subject', and 'body' key/value pairs at its root") do |payload|
+  parser.on("-p", "--payload PAYLOAD", "A JSON payload encapsulated in single quotes containing"\ 
+    "'api_key', 'domain', 'from', 'to', 'subject' and 'body' key/value pairs at its root") do |payload|
     args[:p] = true
     parsed_payload = parse_payload(payload)
     if valid_payload?(parsed_payload) == true
